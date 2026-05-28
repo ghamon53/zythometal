@@ -1,0 +1,77 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+<section class="beer-sheet">
+    <div class="container">
+
+        <h1 class="beer-title">{{ page.title }}</h1>
+
+        <div class="beer-meta">
+            <span>{{ page.header.style }}</span>
+            <span>{{ page.header.abv }}</span>
+        </div>
+
+        <div class="beer-tech">
+            {% if page.header.ibu %}
+                <div>IBU : {{ page.header.ibu }}</div>
+            {% endif %}
+            {% if page.header.ebc %}
+                <div>EBC : {{ page.header.ebc }}</div>
+            {% endif %}
+            {% if page.header.release %}
+                <div>Release : {{ page.header.release }}</div>
+            {% endif %}
+        </div>
+
+        {% if page.header.poster and page.media[page.header.poster] %}
+            <div class="beer-poster">
+                <img src="{{ page.media[page.header.poster].url }}"
+                     alt="{{ page.title }}">
+            </div>
+        {% endif %}
+
+	{% if page.header.inspiration %}
+		<div class="beer-inspiration">
+    		  <h2>Inspiration</h2>
+    		  {{ page.header.inspiration|markdown }}
+		</div>
+	{% endif %}
+
+        <div class="beer-links">
+            {% if page.header.littlebock %}
+                <a href="{{ page.header.littlebock }}" target="_blank" title="Recette LittleBock">
+                    🍺
+                </a>
+            {% endif %}
+
+            {% if page.header.music.youtube %}
+                <a href="{{ page.header.music.youtube }}" target="_blank" title="YouTube">
+                    ▶️
+                </a>
+            {% endif %}
+
+            {% if page.header.music.deezer %}
+                <a href="{{ page.header.music.deezer }}" target="_blank" title="Deezer">
+                    🎧
+                </a>
+            {% endif %}
+
+
+           {% if page.header.degustation %}
+                <br />
+                <br />
+                <h2>Donnez votre avis sur cette bière</h2>
+		<p>Les avis me permettront d'améliorer les futurs brassins.</p>
+                <a href="{{ page.header.degustation }}" target="_blank" title="Dnooez votre avis">
+                    ⭐
+                </a>
+            {% endif %}
+        </div>
+
+        </div>
+
+    
+
+    </div>
+</section>
+{% endblock %}
